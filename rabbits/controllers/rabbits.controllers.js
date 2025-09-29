@@ -27,8 +27,13 @@ const getRabbit = (req, res) => {
 
 const editRabbit = (req, res) => {
   try {
-    const resp = editItem(req.params.id, req.body);
-    res.status(200).send(resp);
+    const rabbit = req.body;
+    if (rabbit.name[0] !== "J") {
+      res.status(400).send("Rabbit names must start with J");
+    } else {
+      const resp = editItem(req.params.id, req.body);
+      res.status(200).send(resp);
+    }
   } catch (err) {
     res.status(500).send(err);
   }
@@ -36,9 +41,14 @@ const editRabbit = (req, res) => {
 
 const addRabbit = (req, res) => {
   try {
-    console.log(req.body);
-    const resp = addItem(req.body);
-    res.status(200).send(resp);
+    const rabbit = req.body;
+    // { id: 15890798789, name: 'Jonathan', size: '10lbs' }
+    if (rabbit.name[0] !== "J") {
+      res.status(400).send("Rabbit names must start with J");
+    } else {
+      const resp = addItem(req.body);
+      res.status(200).send(resp);
+    }
   } catch (err) {
     res.status(500).send(err);
   }
