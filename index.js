@@ -1,10 +1,12 @@
 // App.js
 const express = require("express");
-
+const cors = require("cors");
 const rabbitRoutes = require("./rabbits/routes/rabbits.routes");
 
 const app = express();
 const port = 7070;
+
+app.use(cors());
 
 /* Routes */
 app.use("/rabbits", rabbitRoutes);
